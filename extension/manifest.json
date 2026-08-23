@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Agent Control Companion",
+  "version": "0.1.0",
+  "description": "Sync visible AI capacity indicators to Agent Control without collecting credentials or session tokens.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://chatgpt.com/*", "https://chat.openai.com/*", "https://*.cto.new/*"],
+  "action": {"default_popup": "popup.html", "default_title": "Agent Control"},
+  "content_scripts": [{"matches": ["https://chatgpt.com/*", "https://chat.openai.com/*", "https://*.cto.new/*"], "js": ["content.js"], "run_at": "document_idle"}]
+}
