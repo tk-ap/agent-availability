@@ -14,11 +14,13 @@
     const t = clean(raw);
     const lower = t.toLowerCase();
 
-    // ChatGPT-style capacity panel observed from the supplied realtime screenshots:
-    // "DAILY USAGE 100%" + "FREES UP SOON +100%" followed by rows such as
-    // "+13% ... in 9 hours". Treat this as exhausted-now with scheduled capacity returns.
+    // ChatGPT-style capacity panel observed from supplied realtime screenshots.
+    // Important: this UI describes rolling limits, not a fixed midnight reset.
     const usageMatch = lower.match(/daily\s+usage\s+(\d+)\s*%/i);
     const freesSoonMatch = lower.match(/frees\s+up\s+soon\s*\+?(\d+)\s*%/i);
+    const rollingWindowMatch = lower.match(/usage\s+limits\s+are\s+based\s+on\s+rolling\s+24\s+hour\s+and\s+7\s+day\s+windows/i);
+    const noFixedReset = /there\s+is\s+no\s+fixed\s+reset\s+time/i.test(lower);
+
     const futureWindows = [];
     const rowRe = /\+(\d+)\s*%\s+(?:in|after)\s+(\d+(?:\.\d+)?)\s*(hours?|hrs?|h|minutes?|mins?|m)\b/gi;
     let row;
@@ -29,6 +31,10 @@
         raw: clean(row[0])
       });
     }
+
+    // Capture account identity and plan from the visible billing/usage card.
+    const accountMatch = t.match(/(?:Pro\s+trial|Plus|Pro|Team|Enterprise)[^\n]{0,100}?([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/i);
+    const planMatch = t.match(/\b(Pro\s+trial|Plus|Pro|Team|Enterprise)\b/i);
 
     // Generic capacity patterns for other providers/interfaces.
     const matches = [];
@@ -47,6 +53,8 @@
 
     const dailyUsagePercent = usageMatch ? Number(usageMatch[1]) : null;
     const currentAvailablePercent = dailyUsagePercent !== null ? Math.max(0, 100 - dailyUsagePercent) : null;
+    const scheduledReturnPercent = freesSoonMatch ? Number(freesSoonMatch[1]) : null;
+    const totalScheduledReturnPercent = futureWindows.reduce((sum, x) => sum + x.amountPercent, 0);
 
     return {
       provider,
@@ -54,10 +62,17 @@
       observedAt: new Date().toISOString(),
       pageTitle: document.title,
       sourceMode: 'visible-dom',
+      accountEmail: accountMatch ? accountMatch[1] : null,
+      plan: planMatch ? planMatch[1] : null,
       dailyUsagePercent,
       currentAvailablePercent,
-      scheduledReturnPercent: freesSoonMatch ? Number(freesSoonMatch[1]) : null,
+      scheduledReturnPercent,
       futureWindows,
+      totalScheduledReturnPercent,
+      limitModel: rollingWindowMatch ? 'rolling-24h-and-7d' : 'unknown',
+      hasFixedReset: rollingWindowMatch ? !noFixedReset : null,
+      capacitySemantics: rollingWindowMatch ? 'rolling-window-usage' : 'unknown',
+      modelRatesDiffer: /models\s+use\s+your\s+limit\s+at\s+different\s+rates/i.test(lower),
       matches
     };
   }
