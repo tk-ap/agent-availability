@@ -1,44 +1,45 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-08-24",
   "products": [
     {
       "id": "ailhat",
       "name": "Ailhat",
-      "summary": "AI product intelligence and market-gap detection platform that continuously scans a product, identifies bugs and unmet market opportunities, and turns those findings into prioritized work for AI coding agents.",
+      "summary": "AI product intelligence and market-gap detection platform.",
+      "url": "https://ailhat.vercel.app/",
       "stage": "private-beta-prelaunch",
-      "readiness": {
-        "overall": 65,
-        "confidence": "medium",
-        "dimensions": {
-          "product": 82,
-          "infrastructure": 72,
-          "authentication": 60,
-          "intelligence": 65,
-          "ux": 75,
-          "billing": 30,
-          "gtm": 20
-        }
-      },
-      "firstPaidClient": {
-        "distance": "4-8 meaningful work sessions",
-        "confidence": "medium",
-        "note": "Directional estimate, not a revenue forecast."
-      },
-      "blockers": [
-        "Production reliability",
-        "Authentication reliability",
-        "Complete live scanning loop",
-        "Opportunity-to-actionable-work pipeline",
-        "Customer-facing value proposition",
-        "Billing and onboarding",
-        "First-customer validation workflow"
-      ],
-      "nextActions": [
-        { "priority": "P0", "action": "Verify production deployment and authentication", "impact": "HIGH" },
-        { "priority": "P0", "action": "Run a complete live product scan", "impact": "HIGH" },
-        { "priority": "P0", "action": "Convert scan findings into prioritized remediation work", "impact": "HIGH" }
-      ]
+      "scope": "portfolio"
+    },
+    {
+      "id": "alvira",
+      "name": "ALVIRA",
+      "summary": "Context-intelligence / operating-system platform.",
+      "url": "https://alviratech.vercel.app/",
+      "stage": "active ecosystem product",
+      "scope": "portfolio"
+    },
+    {
+      "id": "ledgato",
+      "name": "Ledgato",
+      "summary": "Authorization and security control plane for AI agents.",
+      "url": "https://ledgato.vercel.app/",
+      "stage": "active product update",
+      "scope": "shared-builder"
+    },
+    {
+      "id": "bridge",
+      "name": "ALVIRA Bridge",
+      "summary": "ALVIRA ecosystem integration layer.",
+      "url": "https://alviratech-bridge.vercel.app/",
+      "stage": "active ecosystem product",
+      "scope": "shared-builder"
     }
-  ]
+  ],
+  "excluded": ["hoopdash"],
+  "sharedCapacity": {
+    "provider": "cto.new",
+    "account": "Builder",
+    "consumers": ["ledgato", "bridge"],
+    "semantics": "One shared execution bucket; work on either consumer depletes capacity available to the other."
+  }
 }
