@@ -1,45 +1,19 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "updatedAt": "2026-08-24",
+  "sourcePolicy": "Preserve prior site-scan findings; never replace unknown readiness or paid-client timing with invented numbers.",
   "products": [
-    {
-      "id": "ailhat",
-      "name": "Ailhat",
-      "summary": "AI product intelligence and market-gap detection platform.",
-      "url": "https://ailhat.vercel.app/",
-      "stage": "private-beta-prelaunch",
-      "scope": "portfolio"
-    },
-    {
-      "id": "alvira",
-      "name": "ALVIRA",
-      "summary": "Context-intelligence / operating-system platform.",
-      "url": "https://alviratech.vercel.app/",
-      "stage": "active ecosystem product",
-      "scope": "portfolio"
-    },
-    {
-      "id": "ledgato",
-      "name": "Ledgato",
-      "summary": "Authorization and security control plane for AI agents.",
-      "url": "https://ledgato.vercel.app/",
-      "stage": "active product update",
-      "scope": "shared-builder"
-    },
-    {
-      "id": "bridge",
-      "name": "ALVIRA Bridge",
-      "summary": "ALVIRA ecosystem integration layer.",
-      "url": "https://alviratech-bridge.vercel.app/",
-      "stage": "active ecosystem product",
-      "scope": "shared-builder"
-    }
+    {"id":"ailhat","name":"Ailhat","summary":"AI product intelligence and market-gap detection platform.","url":"https://ailhat.vercel.app/","stage":"private-beta-prelaunch","readinessPct":65,"firstPaidClient":"needs assessment","source":"prior site scan"},
+    {"id":"alvira","name":"ALVIRA","summary":"Context-intelligence / operating-system platform.","url":"https://alviratech.vercel.app/","stage":"active ecosystem product","readinessPct":null,"firstPaidClient":"needs assessment","source":"portfolio scope"},
+    {"id":"bridge","name":"ALVIRA Bridge","summary":"ALVIRA ecosystem integration layer.","url":"https://alviratech-bridge.vercel.app/","stage":"active ecosystem product","readinessPct":null,"firstPaidClient":"needs assessment","source":"portfolio scope"},
+    {"id":"ledgato","name":"Ledgato","summary":"Authorization and security control plane for AI agents.","url":"https://ledgato.vercel.app/","stage":"active product update","readinessPct":null,"firstPaidClient":"needs assessment","source":"portfolio scope"},
+    {"id":"policyguard","name":"PolicyGuard","summary":"AI policy, governance, and control product in the portfolio.","url":null,"stage":"needs assessment","readinessPct":null,"firstPaidClient":"needs assessment","source":"prior portfolio inventory"},
+    {"id":"websitehero","name":"WEBSITEHERO","summary":"Website-focused product in the portfolio; current product positioning requires live scan.","url":null,"stage":"needs assessment","readinessPct":null,"firstPaidClient":"needs assessment","source":"prior portfolio inventory"},
+    {"id":"trendvault","name":"TrendVault","summary":"Trend-focused product in the portfolio; current product positioning requires live scan.","url":null,"stage":"needs assessment","readinessPct":null,"firstPaidClient":"needs assessment","source":"prior portfolio inventory"},
+    {"id":"adscale-pro","name":"AdScale Pro","summary":"Advertising / growth product in the portfolio; current product positioning requires live scan.","url":null,"stage":"needs assessment","readinessPct":null,"firstPaidClient":"needs assessment","source":"prior portfolio inventory"},
+    {"id":"hoopdash","name":"Hoopdash","summary":"Portfolio project previously identified, but explicitly excluded from current Agent Control scope.","url":null,"stage":"excluded","readinessPct":null,"firstPaidClient":null,"source":"explicit exclusion"}
   ],
-  "excluded": ["hoopdash"],
-  "sharedCapacity": {
-    "provider": "cto.new",
-    "account": "Builder",
-    "consumers": ["ledgato", "bridge"],
-    "semantics": "One shared execution bucket; work on either consumer depletes capacity available to the other."
-  }
+  "activeScope":["ailhat","alvira","bridge","ledgato","policyguard","websitehero","trendvault","adscale-pro"],
+  "excluded":["hoopdash"],
+  "sharedCapacity":{"provider":"cto.new","account":"Builder","consumers":["ledgato","bridge"],"semantics":"One shared execution bucket; work on either consumer depletes capacity available to the other."}
 }
