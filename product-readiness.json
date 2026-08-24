@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-24",
+  "products": [
+    {
+      "id": "ailhat",
+      "name": "Ailhat",
+      "summary": "AI product intelligence and market-gap detection platform that continuously scans a product, identifies bugs and unmet market opportunities, and turns those findings into prioritized work for AI coding agents.",
+      "stage": "private-beta-prelaunch",
+      "readiness": {
+        "overall": 65,
+        "confidence": "medium",
+        "dimensions": {
+          "product": 82,
+          "infrastructure": 72,
+          "authentication": 60,
+          "intelligence": 65,
+          "ux": 75,
+          "billing": 30,
+          "gtm": 20
+        }
+      },
+      "firstPaidClient": {
+        "distance": "4-8 meaningful work sessions",
+        "confidence": "medium",
+        "note": "Directional estimate, not a revenue forecast."
+      },
+      "blockers": [
+        "Production reliability",
+        "Authentication reliability",
+        "Complete live scanning loop",
+        "Opportunity-to-actionable-work pipeline",
+        "Customer-facing value proposition",
+        "Billing and onboarding",
+        "First-customer validation workflow"
+      ],
+      "nextActions": [
+        { "priority": "P0", "action": "Verify production deployment and authentication", "impact": "HIGH" },
+        { "priority": "P0", "action": "Run a complete live product scan", "impact": "HIGH" },
+        { "priority": "P0", "action": "Convert scan findings into prioritized remediation work", "impact": "HIGH" }
+      ]
+    }
+  ]
+}
